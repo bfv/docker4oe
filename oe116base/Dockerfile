@@ -17,9 +17,9 @@ RUN mkdir /install
 RUN mkdir /install/openedge
 
 # the install has to be in the same directory as this Dockerfile
-COPY PROGRESS_OE_11.6_LNX_64.gz /install
-RUN tar -xzvf /install/PROGRESS_OE_11.6_LNX_64.gz -C /install/openedge
-RUN rm /install/PROGRESS_OE_11.6_LNX_64.gz
+COPY PROGRESS_OE_11.6_LNX_64.tar.gz /install
+RUN tar -xzvf /install/PROGRESS_OE_11.6_LNX_64.tar.gz -C /install/openedge
+RUN rm /install/PROGRESS_OE_11.6_LNX_64.tar.gz
 
 # you need a response.ini from a previous install
 COPY response.ini /install/openedge

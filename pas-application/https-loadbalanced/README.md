@@ -16,13 +16,13 @@ The setup will look like:
 
 ```
 ┌───────────┐          ┌───────────┐
-│   httpd   │ ──────┬──│    pas1   │
+│   httpd   ├───────┬──┤    pas1   │
 └─────┬─────┘       │  └───────────┘
       ┊             │  ┌───────────┐
-      ┊             ├──│    pas2   │
+      ┊             ├──┤    pas2   │
 ┌─────┴─────┐       │  └───────────┘
 │  certbot  │       │  ┌───────────┐
-└───────────┘       └──│    pas3   │
+└───────────┘       └──┤    pas3   │
                        └───────────┘
 
 ```
@@ -38,6 +38,23 @@ run `init-letsencrypt.sh`. What this does is creating a temp certificate to make
 
 ## load balancing three PAS instances
 The `data/apache/pas/pas.conf` file reflect what is necessary to devide the load over 3 PAS instances and do a healthcheck every 5 seconds.
+
+## result
+To start everything you just do a `docker-compose up` in a dos/bash cli.
+After everything is running you should be able to request:
+
+`https://${mydomain}/pas/get&openedge=true&thisis=cool`
+
+where of course ${mydomain} should be replaced with your domain. Paste thus in a browser and start hitting F5.
+
+Test load balancing/fail over with:
+`docker stop pashttpbin2_1`
+
+After 5 seconds Apache should be aware that pashttpbin2_1 is no longer available and stops using it.
+
+`docker-compose up pashttpbin2`
+
+And Apache is again load balancing over the 3 PAS instances.
 
 ## disclaimer
 Everything has been developed and tested on Windows 10 (1809 build).

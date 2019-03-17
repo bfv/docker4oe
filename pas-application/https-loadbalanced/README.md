@@ -1,3 +1,5 @@
+# WORK IN PROGRESS
+
 # PAS load balanced behind Apache secure httpd server
 
 Once you start running PAS instance in docker you'll probably realize this gives some opportunity for load balancing them. This could for example be usefull for stopping ill behaving instances without the service being unavailable.

@@ -35,11 +35,11 @@ In this picture every box represents a Docker container.
 Since we're orchestrating multiple container we use `Docker Compose` to tie them all together.
 
 ## flow
-First we need to replace all the ${mydomain} and ${mydomainemail} placeholders with you actual domain/email. Note: the email address should belong to the domain. Next we setup Apache and Certbot. Certbot is the letsencrypt container to make obtaining a certificate easy.
-run `init-letsencrypt.sh`. What this does is creating a temp certificate to make sure that Apache will be able to start (with SSL settings enabled). After that the certbot requests the certificates.
+First we need to replace all the ${mydomain} and ${mydomainemail} placeholders with you actual domain/email. Note: the email address should belong to the domain. Herefore there's `replace.sh`, edit this file to set DOMAIN and EMAILADDRESS to their correct values. Run `replace.sh`. Next we setup Apache and Certbot. Certbot is the letsencrypt container to make obtaining a certificate easy.
+Run `init-letsencrypt.sh`. What this does is creating a temp certificate to make sure that Apache will be able to start (with SSL settings enabled). After that the certbot requests the certificates.
 
 ## load balancing three PAS instances
-The `data/apache/pas/pas.conf` file reflect what is necessary to devide the load over 3 PAS instances and do a healthcheck every 5 seconds.
+The `data/apache/pas/pas.conf` file reflects what is necessary to devide the load over 3 PAS instances and do a healthcheck every 5 seconds.
 
 ## result
 To start everything you just do a `docker-compose up` in a dos/bash cli.
@@ -49,10 +49,10 @@ After everything is running you should be able to request:
 
 where of course ${mydomain} should be replaced with your domain. Paste thus in a browser and start hitting F5.
 
-Test load balancing/fail over with:
+Test load-balancing and.or fail-over with:
 `docker stop pashttpbin2_1`
 
-After 5 seconds Apache should be aware that pashttpbin2_1 is no longer available and stops using it.
+After 5 seconds Apache should be aware that pashttpbin2_1 is no longer available and stops using it. Hit F5 a couple of times to see that the load is ditributes over 1 & 3.
 
 `docker-compose up pashttpbin2`
 

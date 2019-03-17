@@ -23,4 +23,4 @@ Obviously you have to provide you own progress.cfg and put this in whatever you 
 Once the container is running you'll be able to requets http://localhost:10000/web/get?openedge=true&testparam=made_by_bfv
 
 # load-balancing PAS instances
-To see how this all comes together in a load-balanced environment see: [https-loadbalanced](https-loadbalanced/README.md)
+To see how this all comes together in a load-balanced environment see: [https-loadbalanced](https-loadbalanced/)

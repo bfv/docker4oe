@@ -33,7 +33,7 @@ In this picture every box represents a Docker container.
 Since we're orchestrating multiple container we use `Docker Compose` to tie them all together.
 
 ## flow
-First we need to replace all the ${mydomain} placeholders with you actual domain. Next we setup Apache and Certbot. Certbot is the letsencrypt container to make obtaining a certificate easy.
+First we need to replace all the ${mydomain} and ${mydomainemail} placeholders with you actual domain/email. Note: the email address should belong to the domain. Next we setup Apache and Certbot. Certbot is the letsencrypt container to make obtaining a certificate easy.
 run `init-letsencrypt.sh`. What this does is creating a temp certificate to make sure that Apache will be able to start (with SSL settings enabled). After that the certbot requests the certificates.
 
 ## load balancing three PAS instances

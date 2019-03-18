@@ -1,13 +1,8 @@
 # docker4oe
-Dockerfiles for setting up OpenEdge on Docker
+Dockerfiles for setting up OpenEdge on Docker.
+note: I decided to re-organise this repo and focus more on PAS. For 11.6 and non-PAS stuff separated branches have been created.
 
-## flattening images ##
-The images via the Dockerfiles can become quite large. If you're sure you're satisfied with an image you can flatten the image via:
-
-`docker export <container id> | docker import - account/reponame:oe-11.6-latest-flat`
-
-## Note for Docker on Windows
-Make sure that your text files (Dockerfile but especially response.ini) have just a LF as end-of-line. CRLF as EOL can give some timeconsuming surprises  
 
 # IMPORTANT
-When editting the response.ini file make sure that the file is saved with LF line endings (as opposed to CR+LF).
+When editting the response.ini and all other files that will be transfered into an image, make sure that these files are saved with LF line endings (as opposed to CR+LF).
+

@@ -1,4 +1,8 @@
+#!/bin/bash
+
+logfile=/app/pas/as/logs/as-pas.agent.log
+touch $logfile
 
 /app/pas/as/bin/tcman.sh start -v
-sleep 10s
-tail -f /app/pas/as/logs/as-pas.agent.log
+
+tail -f $logfile

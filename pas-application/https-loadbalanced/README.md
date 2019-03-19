@@ -33,8 +33,13 @@ In this picture every box represents a Docker container.
 Since we're orchestrating multiple container we use `Docker Compose` to tie them all together.
 
 ## flow
-First we need to replace all the ${mydomain} and ${mydomainemail} placeholders with you actual domain/email. Note: the email address should belong to the domain. Herefore there's `replace.sh`, edit this file to set DOMAIN and EMAILADDRESS to their correct values. Run `replace.sh`. Next we setup Apache and Certbot. Certbot is the letsencrypt container to make obtaining a certificate easy.
-Run `init-letsencrypt.sh`. What this does is creating a temp certificate to make sure that Apache will be able to start (with SSL settings enabled). After that the certbot requests the certificates.
+- First we need to replace all the ${mydomain} and ${mydomainemail} placeholders with you actual domain/email. Note: the email address should belong to the domain. Herefore there's `replace.sh`, edit this file to set DOMAIN and EMAILADDRESS to their correct values.
+- Run `replace.sh`.
+- Next we setup Apache and Certbot. Certbot is the letsencrypt container to make obtaining a certificate easy.
+- Run `init-letsencrypt.sh`. What this does is creating a temp certificate to make sure that Apache will be able to start (with SSL settings enabled). After that the certbot requests the certificates.
+- use `docker-compose down` to shutdown the running containers.
+- use `docker-compose up` to start everything. For unknown reasons this may fail the first time. Do a "down" and ""
+up again and then you're good to go.
 
 ## load balancing three PAS instances
 The `data/apache/pas/pas.conf` file reflects what is necessary to devide the load over 3 PAS instances and do a healthcheck every 5 seconds.

@@ -28,6 +28,8 @@ RUN \
 
 USER openedge
 
+COPY start.sh /app/pas
+
 # the io directory is for exchanging data, logs are, well, for PAS log files
 VOLUME /app/pas/as/io
 VOLUME /app/pas/as/logs

@@ -24,8 +24,6 @@ RUN \
   mkdir /app/pas/ && \
   mkdir /app/license/
 
-COPY start.sh /app/pas
-
 # turn them over to user pasadmin
 RUN chown -R openedge:openedge /app/
 RUN chmod +x /app/pas/start.sh

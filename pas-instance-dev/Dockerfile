@@ -1,4 +1,3 @@
-# reference the tag og the PAS install image here
 FROM pas-dev-install-12.2
 
 LABEL maintainer="Bronco Oostermeyer <dev@bfv.io>"
@@ -6,13 +5,17 @@ LABEL maintainer="Bronco Oostermeyer <dev@bfv.io>"
 USER root
 
 ENV INSTANCENAME as-pas
-ENV HTTPPORT 10000
-ENV HTTPSPORT 10001
+ENV HTTPPORT 8810
+ENV HTTPSPORT 8811
+ENV HEALTHPORT 8899
 ENV PASBASE /app/pas/as
 
-EXPOSE ${HTTPPOST} ${HTTPSPORT}
+EXPOSE ${HTTPPOST} ${HTTPSPORT} ${HEALTHPORT}
 
 RUN pasman create -p ${HTTPPORT} -P ${HTTPSPORT} -v -N ${INSTANCENAME} ${PASBASE}
+
+RUN ${PASBASE}/bin/tcman.sh feature HealthCheck=on
+RUN ${PASBASE}/bin/tcman.sh config psc.as.health.enabled=true
 
 # disable obsolete SOAP & REST protocols
 RUN \

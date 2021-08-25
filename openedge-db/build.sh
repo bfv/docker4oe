@@ -63,7 +63,6 @@ image_name=${IMAGE_BASENAME}:${version}
 
 createDockerIgnore
 
-echo build version ${version}
 docker build -f ${dockerfile} \
     --rm \
     -t ${image_name} \
